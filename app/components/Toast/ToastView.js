@@ -17,14 +17,12 @@ class Toast extends React.Component {
 		// activate on first click only = avoid multiple clicks
 		if(!event.detail || event.detail == 1) {
 			//console.log('state ' +this.state.showToast)
-			// setState no callback
-			//this.setState({	showToast: true, }); // will not allow second click as state set to true
 			// setState with callback
 		    this.setState( {
 		    	showToast: true
 		    	}, () => {
 		      		setTimeout( () => 
-		      			this.setState({ showToast: false })
+		      			this.setState({ showToast: false }) // reset 
 		    		,  3000) // should match animation (if animation used)
 		    		});
 		}
@@ -39,10 +37,6 @@ class Toast extends React.Component {
 	}
 	*/
 
-	componentDidMount() {
-		//console.log('did mount - toast')
-	}
-	
 	render () {
 
 		const { showToast } = this.state; 
@@ -63,8 +57,6 @@ class Toast extends React.Component {
 
 	    return (
 
-		// Reset Button (is commented out). Move+Add (in right code block location) if not using callback with setState
-		// <p /><span><small><button style={{zIndex:'2',}} className='btn' onClick={this.resetClick}>Reset</button></small></span>
     	<div className='mui--text-center'>
     		<p /><span><small><button style={{zIndex:'2',}} className='btn' onClick={this.buttonClick}>Show Toast</button></small></span>
 	    	<div className='mui-container mui--text-center'>{aDiv}</div>
